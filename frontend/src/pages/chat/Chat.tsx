@@ -792,7 +792,7 @@ const Chat = () => {
             {!messages || messages.length < 1 ? (
               <Stack className={styles.chatEmptyState}>
                 <img src={logo} className={styles.chatIcon} aria-hidden="true" />
-                <h1 className={styles.chatEmptyStateTitle}>{ui?.chat_title}</h1>
+                <h1 className={styles.chatEmptyStateTitle}>{colorizeText(ui?.chat_title || '')}</h1>
                 <h2 className={styles.chatEmptyStateSubtitle}>{ui?.chat_description}</h2>
               </Stack>
             ) : (
@@ -836,7 +836,7 @@ const Chat = () => {
                     <div className={styles.chatMessageGpt}>
                       <Answer
                         answer={{
-                          answer: "Generating answer...",
+                          answer: "답변을 생성중입니다...",
                           citations: [],
                           generated_chart: null
                         }}
@@ -868,6 +868,21 @@ const Chat = () => {
               )}
               <Stack>
                 {appStateContext?.state.isCosmosDBAvailable?.status !== CosmosDBStatus.NotConfigured && (
+                // 20250307 css로 적용, 모바일 위해
+                <CommandBarButton
+                  role="button"
+                  className={styles.newChatIcon} // CSS 모듈 클래스 사용
+                  //iconProps={{ iconName: 'Add' }}
+                  iconProps={{
+                    iconName: 'Add',
+                    styles: { root: { color: '#FFFFFF' } } // 아이콘의 색상을 흰색으로 설정
+                  }}
+                  onClick={newChat}
+                  disabled={disabledButton()}
+                  aria-label="start a new chat button"
+                  title="새 채팅"
+                />
+                /*
                   <CommandBarButton
                     role="button"
                     styles={{
@@ -891,8 +906,10 @@ const Chat = () => {
                     onClick={newChat}
                     disabled={disabledButton()}
                     aria-label="start a new chat button"
-                  />
+                    title={'새 채팅'}
+                  /> */
                 )}
+                {/* 250228 대화 내용 완전 삭제 버튼 위험
                 <CommandBarButton
                   role="button"
                   styles={{
@@ -924,7 +941,7 @@ const Chat = () => {
                   }
                   disabled={disabledButton()}
                   aria-label="clear chat button"
-                />
+                /> */}
                 <Dialog
                   hidden={hideErrorDialog}
                   onDismiss={handleErrorDialogClose}
@@ -933,7 +950,7 @@ const Chat = () => {
               </Stack>
               <QuestionInput
                 clearOnSend
-                placeholder="Type a new question..."
+                placeholder="무엇이든 물어보세요 (줄바꿈 입력 : Shift + Enter)"
                 disabled={isLoading}
                 onSend={(question, id) => {
                   appStateContext?.state.isCosmosDBAvailable?.cosmosDB
@@ -1038,6 +1055,20 @@ const Chat = () => {
       )}
     </div>
   )
+}
+
+// 20250307 사장님 디자인
+function colorizeText(text: string) {
+  const redIndices = [0, 7, 19, 21]; // GeMA
+  return (
+    <span style={{ whiteSpace: 'pre' }}>
+      {text.split('').map((char, index) => (
+        <span key={index} style={{ color: redIndices.includes(index) ? '#D70010' : 'inherit' }}>
+          {char}
+        </span>
+      ))}
+    </span>
+  );
 }
 
 export default Chat

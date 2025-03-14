@@ -64,9 +64,9 @@ export const ChatHistoryListItemCell: React.FC<ChatHistoryListItemCellProps> = (
   const isSelected = item?.id === appStateContext?.state.currentChat?.id
   const dialogContentProps = {
     type: DialogType.close,
-    title: 'Are you sure you want to delete this item?',
+    title: '이 채팅을 삭제하시겠습니까?',
     closeButtonAriaLabel: 'Close',
-    subText: 'The history of this chat session will permanently removed.'
+    subText: '이 채팅이 영구적으로 삭제됩니다.'
   }
 
   const modalProps = {
@@ -116,6 +116,10 @@ export const ChatHistoryListItemCell: React.FC<ChatHistoryListItemCellProps> = (
   const handleSelectItem = () => {
     onSelect(item)
     appStateContext?.dispatch({ type: 'UPDATE_CURRENT_CHAT', payload: item })
+
+    if (window.matchMedia('(max-width: 768px)').matches) { // 20250310 
+      appStateContext?.dispatch({ type: 'TOGGLE_CHAT_HISTORY'});
+    }
   }
 
   const truncatedTitle = item?.title?.length > 28 ? `${item.title.substring(0, 28)} ...` : item.title
@@ -254,15 +258,31 @@ export const ChatHistoryListItemCell: React.FC<ChatHistoryListItemCellProps> = (
                   className={styles.itemButton}
                   iconProps={{ iconName: 'Delete' }}
                   title="Delete"
-                  onClick={toggleDeleteDialog}
-                  onKeyDown={e => (e.key === ' ' ? toggleDeleteDialog() : null)}
+                  //onClick={toggleDeleteDialog}
+                  //onKeyDown={e => (e.key === ' ' ? toggleDeleteDialog() : null)}
+                  onClick={(e) => {   
+                    e.stopPropagation(); // 20250310 이벤트 전파 차단
+                    toggleDeleteDialog(); // Delete 동작 실행
+                  }}
+                  onKeyDown={(e) => {
+                    e.stopPropagation(); // 이벤트 전파 차단
+                    if (e.key === ' ') toggleDeleteDialog(); // Space 키로 Delete 동작 실행
+                  }}
                 />
                 <IconButton
                   className={styles.itemButton}
                   iconProps={{ iconName: 'Edit' }}
                   title="Edit"
-                  onClick={onEdit}
-                  onKeyDown={e => (e.key === ' ' ? onEdit() : null)}
+                  //onClick={onEdit}
+                  //onKeyDown={e => (e.key === ' ' ? onEdit() : null)}
+                  onClick={(e) => {
+                    e.stopPropagation(); // 이벤트 전파 차단
+                    onEdit(); // Edit 동작 실행
+                  }}
+                  onKeyDown={(e) => {
+                    e.stopPropagation(); // 이벤트 전파 차단
+                    if (e.key === ' ') onEdit(); // Space 키로 Edit 동작 실행
+                  }}
                 />
               </Stack>
             )}

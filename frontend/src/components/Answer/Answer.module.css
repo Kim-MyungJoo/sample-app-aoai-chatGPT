@@ -11,6 +11,13 @@
   border-radius: 5.419px;
 }
 
+/* 20250310 
+@media (max-width: 768) {
+  .answerContainer {
+    max-width: 99%; 
+  }
+} */
+
 .answerText {
   font-style: normal;
   font-weight: 400;
@@ -26,6 +33,19 @@
   word-wrap: break-word;
   max-width: 800px;
   overflow-x: auto;
+}
+
+/* 20250310 */
+@media (max-width: 768) {
+  .answerText {
+    margin: 7px;
+  }
+}
+/* 20250310 */
+@media (max-width: 480px) {
+  .answerText {
+    margin: 4px;
+  }
 }
 
 .answerHeader {

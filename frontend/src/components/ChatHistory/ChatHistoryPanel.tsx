@@ -52,10 +52,10 @@ export function ChatHistoryPanel(_props: ChatHistoryPanelProps) {
 
   const clearAllDialogContentProps = {
     type: DialogType.close,
-    title: !clearingError ? 'Are you sure you want to clear all chat history?' : 'Error deleting all of chat history',
+    title: !clearingError ? '모든 채팅 목록을 삭제하시겠습니까?' : 'Error deleting all of chat history',
     closeButtonAriaLabel: 'Close',
     subText: !clearingError
-      ? 'All chat history will be permanently removed.'
+      ? '모든 채팅 목록이 영구적으로 삭제됩니다.'
       : 'Please try again. If the problem persists, please contact the site administrator.'
   }
 
@@ -67,7 +67,8 @@ export function ChatHistoryPanel(_props: ChatHistoryPanelProps) {
   }
 
   const menuItems: IContextualMenuItem[] = [
-    { key: 'clearAll', text: 'Clear all chat history', iconProps: { iconName: 'Delete' } }
+    //{ key: 'clearAll', text: 'Clear all chat history', iconProps: { iconName: 'Delete' } }
+    { key: 'clearAll', text: '모든 채팅 목록 삭제', iconProps: { iconName: 'Delete' } }
   ]
 
   const handleHistoryClick = () => {
@@ -116,14 +117,15 @@ export function ChatHistoryPanel(_props: ChatHistoryPanelProps) {
               marginRight: 'auto',
               paddingLeft: '20px'
             }}>
-            Chat history
+            {/*Chat history*/}
+            채팅 목록
           </Text>
         </StackItem>
         <Stack verticalAlign="start">
           <Stack horizontal styles={commandBarButtonStyle}>
             <CommandBarButton
               iconProps={{ iconName: 'More' }}
-              title={'Clear all chat history'}
+              title={'모든 채팅 목록 삭제'}
               onClick={onShowContextualMenu}
               aria-label={'clear all chat history'}
               styles={commandBarStyle}

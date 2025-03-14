@@ -52,8 +52,17 @@ export type Action =
   | { type: 'GET_FEEDBACK_STATE'; payload: string }
   | { type: 'SET_ANSWER_EXEC_RESULT'; payload: { answerId: string, exec_result: [] } }
 
+// 20250307 pc/모바일 상태에 따라 history open/close 설정
+// 초기 상태 설정을 위한 함수
+const getInitialChatHistoryOpenState = (): boolean => {
+  if (typeof window !== 'undefined') {
+    return !window.matchMedia('(max-width: 768px)').matches;
+  }
+  return false; // 기본값, 예: 서버 사이드 렌더링 환경
+};
+
 const initialState: AppState = {
-  isChatHistoryOpen: false,
+  isChatHistoryOpen: getInitialChatHistoryOpenState(),  // 20250307
   chatHistoryLoadingState: ChatHistoryLoadingState.Loading,
   chatHistory: null,
   filteredChatHistory: null,

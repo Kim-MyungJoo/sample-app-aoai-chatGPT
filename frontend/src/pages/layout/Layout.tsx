@@ -58,12 +58,12 @@ const Layout = () => {
     const handleResize = () => {
       if (window.innerWidth < 480) {
         setShareLabel(undefined)
-        setHideHistoryLabel('Hide history')
-        setShowHistoryLabel('Show history')
+        setHideHistoryLabel('목록 닫기')
+        setShowHistoryLabel('채팅 목록')
       } else {
         setShareLabel('Share')
-        setHideHistoryLabel('Hide chat history')
-        setShowHistoryLabel('Show chat history')
+        setHideHistoryLabel('채팅목록 닫기')
+        setShowHistoryLabel('채팅목록 열기')
       }
     }
 

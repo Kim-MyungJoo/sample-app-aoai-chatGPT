@@ -41,11 +41,11 @@ class _UiSettings(BaseSettings):
         env_ignore_empty=True
     )
 
-    title: str = "Contoso"
+    title: str = "GeMA"
     logo: Optional[str] = None
     chat_logo: Optional[str] = None
-    chat_title: str = "Start chatting"
-    chat_description: str = "This chatbot is configured to answer your questions"
+    chat_title: str = "GPT-4o enabler for MMAA!"
+    chat_description: str = "군인공제회의 든든한 조력자"
     favicon: str = "/favicon.ico"
     show_share_button: bool = True
     show_chat_history_button: bool = True
@@ -118,7 +118,17 @@ class _AzureOpenAISettings(BaseSettings):
     logit_bias: Optional[dict] = None
     presence_penalty: Optional[confloat(ge=-2.0, le=2.0)] = 0.0
     frequency_penalty: Optional[confloat(ge=-2.0, le=2.0)] = 0.0
-    system_message: str = "You are an AI assistant that helps people find information."
+    system_message: str = "질문에 대한 대답은 기본적으로 **한국어**로 전달하세요. \
+            # 추가 지침 1. 모델의 답변은 명확하고 간결해야 하며, 질문 받은 주제의 핵심을 다뤄야 합니다. \
+            2. 제공되는 답변의 논리는 먼저 이유와 과정(추론)에 대해 설명한 뒤, 최종 결론을 제시해야 합니다. \
+            3. 만약 한국어 외 다른 언어로 요청받는 경우, 요청에 명시된 언어로 답변하세요. \
+            # 출력 형식 - 답변은 한국어로 작성되며, 구체적인 형식이 없는 한 간결한 문장 또는 단락 형식으로 전달하세요. \
+            # 예시 ### 입력:  대중교통이 환경 문제 해결에 기여할 수 있는 이유를 설명해주세요. \
+            ### 출력: 대중교통은 개인 차량 사용을 줄임으로써 온실가스 배출량 감소에 기여할 수 있습니다. \
+            특히, 한 번에 많은 인원을 효율적으로 수송할 수 있기 때문에 에너지 소비를 줄이고 도로 혼잡을 완화합니다. \
+            예를 들어, 버스나 전철을 이용하는 사람들이 늘어나면, 자동차의 수요와 이로 인한 대기오염이 감소할 수 있습니다. \
+            # 비고 - 한국어가 기본 언어이지만, 요청사항에 따라 다른 언어들도 지원할 수 있도록 대응하세요. \
+            - 사용자 요청이 추론 과정을 생략하거나 단순 요약을 요구할 경우, 이에 맞춰 답변하세요."
     preview_api_version: str = MINIMUM_SUPPORTED_AZURE_OPENAI_PREVIEW_API_VERSION
     embedding_endpoint: Optional[str] = None
     embedding_key: Optional[str] = None
@@ -209,7 +219,17 @@ class _SearchCommonSettings(BaseSettings):
     include_contexts: Optional[List[str]] = ["citations", "intent"]
     vectorization_dimensions: Optional[int] = None
     role_information: str = Field(
-        default="You are an AI assistant that helps people find information.",
+        default="질문에 대한 대답은 기본적으로 **한국어**로 전달하세요. \
+            # 추가 지침 1. 모델의 답변은 명확하고 간결해야 하며, 질문 받은 주제의 핵심을 다뤄야 합니다. \
+            2. 제공되는 답변의 논리는 먼저 이유와 과정(추론)에 대해 설명한 뒤, 최종 결론을 제시해야 합니다. \
+            3. 만약 한국어 외 다른 언어로 요청받는 경우, 요청에 명시된 언어로 답변하세요. \
+            # 출력 형식 - 답변은 한국어로 작성되며, 구체적인 형식이 없는 한 간결한 문장 또는 단락 형식으로 전달하세요. \
+            # 예시 ### 입력:  대중교통이 환경 문제 해결에 기여할 수 있는 이유를 설명해주세요. \
+            ### 출력: 대중교통은 개인 차량 사용을 줄임으로써 온실가스 배출량 감소에 기여할 수 있습니다. \
+            특히, 한 번에 많은 인원을 효율적으로 수송할 수 있기 때문에 에너지 소비를 줄이고 도로 혼잡을 완화합니다. \
+            예를 들어, 버스나 전철을 이용하는 사람들이 늘어나면, 자동차의 수요와 이로 인한 대기오염이 감소할 수 있습니다. \
+            # 비고 - 한국어가 기본 언어이지만, 요청사항에 따라 다른 언어들도 지원할 수 있도록 대응하세요. \
+            - 사용자 요청이 추론 과정을 생략하거나 단순 요약을 요구할 경우, 이에 맞춰 답변하세요.",
         validation_alias="AZURE_OPENAI_SYSTEM_MESSAGE"
     )
 

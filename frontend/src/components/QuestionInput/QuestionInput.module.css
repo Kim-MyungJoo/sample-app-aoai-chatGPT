@@ -40,6 +40,25 @@
   color: #424242;
 }
 
+/* 20250313 */
+@media (max-width: 480) { 
+  .questionInputContainer {
+    flex: 1;
+    /* left: 3%; */
+    width: auto;
+  }
+  .questionInputTextArea {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 6px;
+    margin-right: 6px;
+  }
+  .questionInputSendButtonContainer {
+    right: 10px;
+    bottom: 8px;
+  }
+}
+
 .questionInputBottomBorder {
   position: absolute;
   width: 100%;

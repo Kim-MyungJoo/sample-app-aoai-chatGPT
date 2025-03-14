@@ -31,10 +31,24 @@
   color: #242424;
 }
 
+/* 20250307 모바일 환경에서 headerTitle 숨기기 
+@media (max-width: 768px) {
+  .headerTitle {
+    display: none;
+  }
+}*/
+
 .headerIcon {
   height: 32px;
   width: auto;
   margin-left: 36px;
+}
+
+/* 20250310 모바일 환경에서 headerIcon 숨기기 */
+@media (max-width: 768px) {
+  .headerIcon {
+    display: none;
+  }
 }
 
 .shareButtonContainer {

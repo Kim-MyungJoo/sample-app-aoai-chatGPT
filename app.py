@@ -861,7 +861,8 @@ async def ensure_cosmos():
 
 async def generate_title(conversation_messages) -> str:
     ## make sure the messages are sorted by _ts descending
-    title_prompt = "Summarize the conversation so far into a 4-word or less title. Do not use any quotation marks or punctuation. Do not include any other commentary or description."
+    # title_prompt = "Summarize the conversation so far into a 4-word or less title. Do not use any quotation marks or punctuation. Do not include any other commentary or description."
+    title_prompt = "대화를 요약해서 4단어 이하의 한글 제목으로 생성하세요. 영어 고유명사는 영어단어를 그대로 쓰세요. 제목은 짧고 간결해야 하며, 대화의 핵심을 잘 드러내야 합니다. 다른 설명이나 주석, 부사는 포함하지 마세요."
 
     messages = [
         {"role": msg["role"], "content": msg["content"]}
