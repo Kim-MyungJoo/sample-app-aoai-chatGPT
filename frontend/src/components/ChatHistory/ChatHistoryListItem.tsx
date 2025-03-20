@@ -114,6 +114,8 @@ export const ChatHistoryListItemCell: React.FC<ChatHistoryListItemCellProps> = (
   }
 
   const handleSelectItem = () => {
+    appStateContext?.dispatch({ type: 'CLEAR_CURRENT_CHAT' }); // 20250314 해제안되는 현상
+
     onSelect(item)
     appStateContext?.dispatch({ type: 'UPDATE_CURRENT_CHAT', payload: item })
 
@@ -185,6 +187,7 @@ export const ChatHistoryListItemCell: React.FC<ChatHistoryListItemCellProps> = (
       aria-label="chat history item"
       className={styles.itemCell}
       onClick={() => handleSelectItem()}
+      onTouchStart={() => handleSelectItem()} // 250318 애플. 터치 이벤트 추가
       onKeyDown={e => (e.key === 'Enter' || e.key === ' ' ? handleSelectItem() : null)}
       verticalAlign="center"
       // horizontal

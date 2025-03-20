@@ -90,9 +90,9 @@ const Chat = () => {
       appStateContext?.state.chatHistoryLoadingState === ChatHistoryLoadingState.Fail &&
       hideErrorDialog
     ) {
-      let subtitle = `${appStateContext.state.isCosmosDBAvailable.status}. Please contact the site administrator.`
+      let subtitle = `${appStateContext.state.isCosmosDBAvailable.status}. 사이트 관리자에게 문의하세요.`
       setErrorMsg({
-        title: 'Chat history is not enabled',
+        title: '서버와의 통신이 원활하지 않습니다',  // Chat history is not enabled
         subtitle: subtitle
       })
       toggleErrorDialog()
@@ -275,7 +275,7 @@ const Chat = () => {
     } catch (e) {
       if (!abortController.signal.aborted) {
         let errorMessage =
-          'An error occurred. Please try again. If the problem persists, please contact the site administrator.'
+          '세션만료 등 문제가 발생했습니다. 다시 시도해주세요. 문제가 지속되면 관리자에게 문의하세요.'
         if (result.error?.message) {
           errorMessage = result.error.message
         } else if (typeof result.error === 'string') {
@@ -344,7 +344,7 @@ const Chat = () => {
       setMessages(request.messages)
     }
     let result = {} as ChatResponse
-    var errorResponseMessage = 'Please try again. If the problem persists, please contact the site administrator.'
+    var errorResponseMessage = '세션만료 등 문제가 발생했습니다. 다시 시도해주세요(F5). 문제가 지속되면 관리자에게 문의하세요'
     try {
       const response = conversationId
         ? await historyGenerate(request, abortController.signal, conversationId)
@@ -540,8 +540,8 @@ const Chat = () => {
       let response = await historyClear(appStateContext?.state.currentChat.id)
       if (!response.ok) {
         setErrorMsg({
-          title: 'Error clearing current chat',
-          subtitle: 'Please try again. If the problem persists, please contact the site administrator.'
+          title: '현재 채팅을 지우는 중 오류가 발생했습니다.',
+          subtitle: '다시 시도해주세요. 문제가 지속되면 관리자에게 문의하세요.'
         })
         toggleErrorDialog()
       } else {
@@ -657,7 +657,7 @@ const Chat = () => {
             .then(res => {
               if (!res.ok) {
                 let errorMessage =
-                  "An error occurred. Answers can't be saved at this time. If the problem persists, please contact the site administrator."
+                  "세션 만료 등 문제가 발생했습니다. 다시 시도해주세요(F5). 문제가 지속되면 관리자에게 문의하세요."
                 let errorChatMsg: ChatMessage = {
                   id: uuid(),
                   role: ERROR,

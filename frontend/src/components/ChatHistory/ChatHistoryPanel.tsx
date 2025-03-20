@@ -52,11 +52,11 @@ export function ChatHistoryPanel(_props: ChatHistoryPanelProps) {
 
   const clearAllDialogContentProps = {
     type: DialogType.close,
-    title: !clearingError ? '모든 채팅 목록을 삭제하시겠습니까?' : 'Error deleting all of chat history',
+    title: !clearingError ? '모든 채팅 목록을 삭제하시겠습니까?' : '채팅 목록 전체 삭제 오류',
     closeButtonAriaLabel: 'Close',
     subText: !clearingError
       ? '모든 채팅 목록이 영구적으로 삭제됩니다.'
-      : 'Please try again. If the problem persists, please contact the site administrator.'
+      : '다시 시도해주세요. 문제가 지속되면 관리자에게 문의하세요.'
   }
 
   const modalProps = {

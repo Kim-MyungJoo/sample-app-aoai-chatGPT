@@ -9,6 +9,8 @@ export const appStateReducer = (state: AppState, action: Action): AppState => {
       return { ...state, currentChat: action.payload }
     case 'UPDATE_CHAT_HISTORY_LOADING_STATE':
       return { ...state, chatHistoryLoadingState: action.payload }
+    case 'CLEAR_CURRENT_CHAT': // 250314
+      return { ...state, currentChat: null }; // currentChat 초기화
     case 'UPDATE_CHAT_HISTORY':
       if (!state.chatHistory || !state.currentChat) {
         return state

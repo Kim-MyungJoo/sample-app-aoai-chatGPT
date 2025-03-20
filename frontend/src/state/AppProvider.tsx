@@ -51,6 +51,7 @@ export type Action =
   }
   | { type: 'GET_FEEDBACK_STATE'; payload: string }
   | { type: 'SET_ANSWER_EXEC_RESULT'; payload: { answerId: string, exec_result: [] } }
+  | { type: 'CLEAR_CURRENT_CHAT' }  // 20250314
 
 // 20250307 pc/모바일 상태에 따라 history open/close 설정
 // 초기 상태 설정을 위한 함수
