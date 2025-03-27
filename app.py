@@ -461,7 +461,7 @@ async def add_conversation():
             )
             if createdMessageValue == "Conversation not found":
                 raise Exception(
-                    "Conversation not found for the given conversation ID: "
+                    "주어진 대화를 찾을 수 없습니다. 대화 ID : "
                     + conversation_id
                     + "."
                 )

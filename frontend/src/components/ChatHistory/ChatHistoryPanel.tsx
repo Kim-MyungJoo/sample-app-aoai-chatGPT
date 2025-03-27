@@ -186,7 +186,7 @@ export function ChatHistoryPanel(_props: ChatHistoryPanelProps) {
                     </StackItem>
                     <StackItem>
                       <Text style={{ alignSelf: 'center', fontWeight: '400', fontSize: 14 }}>
-                        <span>Chat history can't be saved at this time</span>
+                        <span>현재 채팅기록을 저장할 수 없습니다.</span>
                       </Text>
                     </StackItem>
                   </Stack>

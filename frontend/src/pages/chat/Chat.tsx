@@ -356,7 +356,7 @@ const Chat = () => {
         let errorChatMsg: ChatMessage = {
           id: uuid(),
           role: ERROR,
-          content: `There was an error generating a response. Chat history can't be saved at this time. ${errorResponseMessage}`,
+          content: `응답 생성 중 문제가 발생하였습니다. 현재 채팅 기록을 저장할 수 없습니다. ${errorResponseMessage}`,
           date: new Date().toISOString()
         }
         let resultConversation
